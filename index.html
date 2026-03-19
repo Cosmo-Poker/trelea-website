@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trelea, Inc. — A software development company building engaging online gaming and community experiences.">
+  <title>Trelea, Inc.</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23161b2e'/><text x='32' y='46' font-family='system-ui,sans-serif' font-size='40' font-weight='700' fill='%236c8aff' text-anchor='middle'>T</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: #6c8aff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #8da4ff;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(108, 138, 255, 0.08);
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e6edf3;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #8b949e;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: #e6edf3;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
+      padding-top: 64px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      color: #e6edf3;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      color: #8b949e;
+      max-width: 540px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Divider */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: #6c8aff;
+      border: none;
+      margin: 5rem 0 3rem;
+      opacity: 0.5;
+    }
+
+    /* About */
+    .about {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #6c8aff;
+      margin-bottom: 1.5rem;
+    }
+
+    .about h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .about p {
+      max-width: 620px;
+      color: #8b949e;
+      font-size: 1.05rem;
+    }
+
+    /* Products */
+    .products {
+      padding-top: 2rem;
+      padding-bottom: 6rem;
+    }
+
+    .product-card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+      padding: 2.5rem;
+      max-width: 620px;
+      transition: border-color 0.2s;
+    }
+
+    .product-card:hover {
+      border-color: #30363d;
+    }
+
+    .product-card h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .product-card p {
+      color: #8b949e;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .product-link::after {
+      content: "\2192";
+      transition: transform 0.2s;
+    }
+
+    .product-link:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* Contact */
+    .contact {
+      padding-top: 2rem;
+      padding-bottom: 8rem;
+    }
+
+    .contact h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .contact p {
+      color: #8b949e;
+      font-size: 1.05rem;
+    }
+
+    .contact .email {
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #21262d;
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+      color: #484f58;
+      font-size: 0.8rem;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 1.25rem;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+      }
+
+      .product-card {
+        padding: 1.75rem;
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">Trelea</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Trelea</h1>
+    <p>We build software that brings people together. Focused on online gaming and community platforms that are worth coming back to.</p>
+  </section>
+
+  <section class="about" id="about">
+    <hr class="divider">
+    <p class="section-label">About</p>
+    <h2>Software for communities</h2>
+    <p>Trelea, Inc. is a United States-based software company focused on building engaging online gaming and community experiences. We design and develop platforms where players connect, compete, and build lasting communities.</p>
+  </section>
+
+  <section class="products" id="products">
+    <hr class="divider">
+    <p class="section-label">Products</p>
+    <div class="product-card">
+      <h3>Cosmo Poker</h3>
+      <p>A full-featured online poker platform built for clubs and communities. Multiple game variants, real-time multiplayer, social features, and club management &mdash; all in one place.</p>
+      <a href="https://cosmopoker.club" class="product-link" target="_blank" rel="noopener">cosmopoker.club</a>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <hr class="divider">
+    <p class="section-label">Contact</p>
+    <h2>Get in touch</h2>
+    <p>Reach us at <a href="mailto:info@trelea.com" class="email">info@trelea.com</a></p>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      &copy; 2026 Trelea, Inc. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
