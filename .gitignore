@@ -1,0 +1,12 @@
+# Terraform
+ops/terraform/.terraform/
+ops/terraform/*.tfstate
+ops/terraform/*.tfstate.backup
+ops/terraform/*.tfvars
+ops/terraform/.terraform.lock.hcl
+
+# Ops secrets
+ops/.env.ops
+
+# OS
+.DS_Store

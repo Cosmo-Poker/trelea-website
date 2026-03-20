@@ -1,0 +1,11 @@
+# ──────────────────────────────────────────────────────────────
+# Trelea Website — Terraform Variables
+# Copy to terraform.tfvars and fill in your values
+# ──────────────────────────────────────────────────────────────
+
+do_token          = "dop_v1_xxxxx"
+spaces_access_id  = "DO00xxxxx"
+spaces_secret_key = "xxxxx"
+
+github_repo   = "Cosmo-Poker/trelea-website"
+github_branch = "main"
