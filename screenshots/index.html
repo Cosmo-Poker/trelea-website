@@ -31,7 +31,7 @@
   <ul class="file-list" id="files"></ul>
   <script>
     const files =
-      [".DS_Store","screenshot1.png","screenshot2.png","screenshot3.png","screenshot4.png"];
+      ["screenshot1.png","screenshot2.png","screenshot3.png","screenshot4.png"];
     const ul = document.getElementById('files');
     files.forEach(f => {
       const li = document.createElement('li');
@@ -39,11 +39,13 @@
       a.href = encodeURIComponent(f);
       a.textContent = f;
       li.appendChild(a);
+      li.appendChild(document.createElement('br'));
       const img = document.createElement('img');
       img.src = encodeURIComponent(f);
       img.className = 'thumb';
       img.loading = 'lazy';
       li.appendChild(img);
+      li.appendChild(document.createElement('br'));
       ul.appendChild(li);
     });
   </script>

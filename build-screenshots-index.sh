@@ -7,7 +7,7 @@ INDEX="$DIR/index.html"
 FILES=()
 while IFS= read -r f; do
   FILES+=("$(basename "$f")")
-done < <(find "$DIR" -maxdepth 1 -type f ! -name 'index.html' | sort)
+done < <(find "$DIR" -maxdepth 1 -type f ! -name 'index.html' ! -name '.*' | sort)
 
 # Build JSON array for the file list
 JSON="["
@@ -63,11 +63,13 @@ cat >> "$INDEX" << 'FOOTER'
       a.href = encodeURIComponent(f);
       a.textContent = f;
       li.appendChild(a);
+      li.appendChild(document.createElement('br'));
       const img = document.createElement('img');
       img.src = encodeURIComponent(f);
       img.className = 'thumb';
       img.loading = 'lazy';
       li.appendChild(img);
+      li.appendChild(document.createElement('br'));
       ul.appendChild(li);
     });
   </script>
