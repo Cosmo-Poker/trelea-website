@@ -33,10 +33,10 @@ cat > "$INDEX" << 'HEADER'
       max-width: 900px;
       margin: 0 auto;
     }
-    h1 { color: #e6edf3; font-size: 1.5rem; margin-bottom: 1rem; }
+    h1 { color: #e6edf3; font-size: 1.5rem; margin-bottom: 1rem; text-align: center; }
     a { color: #6c8aff; text-decoration: underline; }
     a:hover { color: #8da4ff; }
-    .file-list { list-style: none; padding: 0; }
+    .file-list { list-style: none; padding: 0; text-align: center; }
     .file-list li { padding: 8px 0; border-bottom: 1px solid #21262d; }
     img.thumb {
       max-width: 100%;
