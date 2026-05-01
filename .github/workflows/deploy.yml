@@ -1,0 +1,58 @@
+name: Deploy trelea-website to S3 + CloudFront
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-west-2
+  S3_BUCKET: trelea-website-production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::870737143259:role/cosmo-poker-frontend-deploy
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Discover CloudFront distribution
+        id: cf
+        run: |
+          ID=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?contains(Aliases.Items, 'trelea.com')].Id | [0]" \
+            --output text)
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+
+      - name: Sync static files to S3
+        run: |
+          # Repo root contains index.html + screenshots/. Skip git/CI files.
+          aws s3 sync . "s3://${{ env.S3_BUCKET }}/" \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "build-screenshots-index.sh" \
+            --exclude "*.md" \
+            --cache-control "public, max-age=300, must-revalidate"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ steps.cf.outputs.id }}" \
+            --paths "/*"
